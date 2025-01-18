@@ -4,7 +4,7 @@ const fs = require("fs");
 const app = express();
 app.use(cors());
 
-const PORT = 5000;
+const PORT = 5001;
 
 // Serve products
 app.get("/products", (req, res) => {
