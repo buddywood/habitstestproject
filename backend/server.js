@@ -1,22 +1,28 @@
 const express = require("express");
 const cors = require("cors");
-const fs = require("fs");
+const fs = require("fs").promises; // Use async fs
 const app = express();
 app.use(cors());
 
-const PORT = 5001;
+app.get("/", (req, res) => res.send("Buddy's Express server is running on Vercel!"));
 
-// Serve products
-app.get("/products", (req, res) => {
-    const products = JSON.parse(fs.readFileSync("./products.json", "utf-8"));
-    res.json(products);
+// Serve products (ASYNC VERSION)
+app.get("/products", async (req, res) => {
+    try {
+        const data = await fs.readFile("./products.json", "utf-8"); // Async read
+        const products = JSON.parse(data);
+        res.json(products);
+    } catch (error) {
+        console.error("Error reading products file:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 });
 
-//  Export `app` without calling `listen()` directly
-module.exports = app;
-
-// Start server only if not in test mode
+// Start the server only when running locally
 if (require.main === module) {
     const PORT = process.env.PORT || 5001;
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
+
+// Export app for Vercel
+module.exports = app;
