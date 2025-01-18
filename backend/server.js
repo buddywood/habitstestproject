@@ -12,4 +12,11 @@ app.get("/products", (req, res) => {
     res.json(products);
 });
 
-app.listen(PORT, () => console.log(`Backend running on port ${PORT}`));
+//  Export `app` without calling `listen()` directly
+module.exports = app;
+
+// Start server only if not in test mode
+if (require.main === module) {
+    const PORT = process.env.PORT || 5001;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
