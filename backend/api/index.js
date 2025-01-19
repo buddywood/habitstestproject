@@ -6,7 +6,9 @@ const path = require("path");
 
 const app = express();
 
-// ✅ Set up CORS properly for Netlify Frontend
+/*** FOR VERCEL DEPLOYMENT ***/
+
+//  Set up CORS properly for Netlify Frontend
 app.use(cors({
     origin: "https://habittestfrontend.netlify.app", // Only allow frontend
     methods: ["GET", "POST", "OPTIONS", "DELETE"],
