@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "Buddy's Shopping World",
+    "slug": "ecommerce-frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": true,
+      "url": "https://u.expo.dev/4ef2ce3f-da7e-4d36-ac49-ea5ea57da590"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ebilly.buddyshopping"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.ebilly.buddyshopping"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "API_URL": "https://habitstestproject.vercel.app",
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4ef2ce3f-da7e-4d36-ac49-ea5ea57da590"
+      }
+    },
+    "owner": "buddynole",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}

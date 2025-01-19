@@ -6,6 +6,9 @@ app.use(cors());
 
 app.use(cors());
 
+/*** FOR LOCAL DEPLOYMENT ***/
+
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); // Allow all domains
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
@@ -13,9 +16,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get("/", (req, res) => res.send("Buddy's Express server is running on Vercel!"));
+app.get("/", (req, res) => res.send("Buddy's Express server is running!"));
 
-// Serve products (ASYNC VERSION)
+// Serve products
 app.get("/products", async (req, res) => {
     try {
         const data = await fs.readFile("./products.json", "utf-8"); // Async read

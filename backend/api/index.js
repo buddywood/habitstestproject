@@ -7,6 +7,8 @@ const path = require("path");
 const app = express();
 app.use(cors());
 
+/*** FOR VERCEL DEPLOYMENT ***/
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*"); // Allow all domains
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
