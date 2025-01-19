@@ -5,19 +5,16 @@ const serverless = require("serverless-http");
 const path = require("path");
 
 const app = express();
-app.use(cors());
 
-/*** FOR VERCEL DEPLOYMENT ***/
-
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*"); // Allow all domains
-    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// ✅ Set up CORS properly for Netlify Frontend
+app.use(cors({
+    origin: "https://habittestfrontend.netlify.app", // Only allow frontend
+    methods: ["GET", "POST", "OPTIONS", "DELETE"],
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"]
+}));
 
 // Get the absolute path to `products.json`
-const PRODUCTS_FILE = path.join(__dirname, "../products.json");
+const PRODUCTS_FILE = path.resolve(__dirname, "..", "products.json");
 
 app.get("/", (req, res) => res.send("Buddy's Express server is running on Vercel!"));
 
