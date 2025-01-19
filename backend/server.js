@@ -4,6 +4,15 @@ const fs = require("fs").promises; // Use async fs
 const app = express();
 app.use(cors());
 
+app.use(cors());
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // Allow all domains
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.get("/", (req, res) => res.send("Buddy's Express server is running on Vercel!"));
 
 // Serve products (ASYNC VERSION)

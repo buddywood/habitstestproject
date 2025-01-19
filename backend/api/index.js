@@ -1,10 +1,18 @@
 const express = require("express");
+const cors = require("cors");
 const { promises: fs } = require("fs");
 const serverless = require("serverless-http");
 const path = require("path");
 
 const app = express();
+app.use(cors());
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // Allow all domains
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // Get the absolute path to `products.json`
 const PRODUCTS_FILE = path.join(__dirname, "../products.json");
